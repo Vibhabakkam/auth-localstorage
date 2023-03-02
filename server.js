@@ -32,3 +32,29 @@ function register(event) {
 
     }
 }
+
+function login(event){
+    event.preventDefault();
+    var userEmail = document.getElementById("email").value;
+    var userPassword = document.getElementById("password").value;
+    var userData = {email : userEmail, password : userPassword}
+
+    var dataFromLS = JSON.parse(localStorage.getItem("userData")) || [];
+    console.log(dataFromLS, 'dataFromLS')
+    var flag = false;
+    for(var i = 0; i < dataFromLS.length; i++){
+        if(dataFromLS[i].email === userEmail && dataFromLS[i].password === userPassword){
+            flag = true;
+        }
+    }
+    if(flag === true){
+        alert("login succecfully")
+    } else {
+        dataFromLS.push(userData);
+        localStorage.setItem("userData",JSON.stringify(dataFromLS));
+        document.getElementById("email").value =" ";
+        document.getElementById("password").value = " ";
+        window.location.href = '/home.html';
+        alert("Wrong cred, Please check your email and password");
+    }
+}
