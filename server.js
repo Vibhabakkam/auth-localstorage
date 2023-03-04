@@ -33,54 +33,55 @@ function register(event) {
     }
 }
 
-function login(event){
+function login(event) {
     event.preventDefault();
     var userEmail = document.getElementById("email").value;
     var userPassword = document.getElementById("password").value;
-    var userData = {email : userEmail, password : userPassword}
+    var userData = { email: userEmail, password: userPassword }
 
     var dataFromLS = JSON.parse(localStorage.getItem("userData")) || [];
     console.log(dataFromLS, 'dataFromLS')
     var flag = false;
-    for(var i = 0; i < dataFromLS.length; i++){
-        if(dataFromLS[i].email === userEmail && dataFromLS[i].password === userPassword){
+    for (var i = 0; i < dataFromLS.length; i++) {
+        if (dataFromLS[i].email === userEmail && dataFromLS[i].password === userPassword) {
             flag = true;
         }
     }
-    if(flag === true){
+    if (flag === true) {
         alert("login succecfully")
         dataFromLS.push(userData);
-        localStorage.setItem("userData",JSON.stringify(dataFromLS));
-        document.getElementById("email").value =" ";
+        localStorage.setItem("userData", JSON.stringify(dataFromLS));
+        document.getElementById("email").value = " ";
         document.getElementById("password").value = " ";
         window.location.href = '/home.html';
     } else {
-       
+
         alert("Wrong cred, Please check your email and password");
     }
 }
 
-
-function forgetPassword(){
+var gettingEmail;
+function forgetPassword() {
 
     var dataFromLS = JSON.parse(localStorage.getItem("userData"));
     var userEmail = document.getElementById("email").value;
+    gettingEmail = userEmail;
 
     var flag = false;
-    for (var i = 0; i < dataFromLS.length; i++){
-        if (dataFromLS[i].email === userEmail){
+    for (var i = 0; i < dataFromLS.length; i++) {
+        if (dataFromLS[i].email === userEmail) {
             flag = true;
         }
     }
-    if(flag === true){
+    if (flag === true) {
         // window.location.href = '/newpass.html';
-         
+
         var newCode = `<input type = "password" id ="password" > <br> <button onclick="newPassword()">set new password</button>`
         var divFromHtml = document.getElementById("change")
         divFromHtml.innerHTML = newCode;
-        alert("set new password")
+        alert(" now set new password")
     }
-    else{
+    else {
         alert(" email not found ,check email again ")
     }
 
@@ -88,10 +89,41 @@ function forgetPassword(){
 }
 
 
-function newPassword(){
+function newPassword() {
+    var userPassword = document.getElementById("password").value;
     var dataFromLS = JSON.parse(localStorage.getItem("userData"));
-    var userEmail = document.getElementById("password").value;
-   alert ("worked")
+    //    alert ("worked")
 
 
+    for (var i = 0; i < dataFromLS.length; i++) {
+        if (dataFromLS[i].email === gettingEmail) {
+            dataFromLS[i].password = userPassword
+        }
+    }
+    localStorage.setItem('userData', JSON.stringify(dataFromLS));
+    gettingEmail = "";
+
+    window.location.href = '/login.html';
+    alert("password change now login")
+
+}
+
+function addToLS() {
+    alert("product added")
+    var Name = document.getElementById("proName").value;
+    var Imge = document.getElementById("proImg").value;
+    var Price = document.getElementById("proPrice").value;
+
+    var userProduct = {  proImg:Imge, proName: Name, proPrice:Price }
+    // store deta from java script to local storage
+    var dataFromLS = JSON.parse(localStorage.getItem("userProduct")) || [];
+    console.log(dataFromLS, 'dataFromLS')
+  
+    dataFromLS.push(userProduct);
+    localStorage.setItem("userProduct", JSON.stringify(dataFromLS));
+    alert("product added")
+
+    var Name = document.getElementById("proName").value ="" ;
+    var Imge = document.getElementById("proImg").value ="";
+    var Price = document.getElementById("proPrice").value ="";
 }
