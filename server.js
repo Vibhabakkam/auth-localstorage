@@ -59,3 +59,33 @@ function login(event){
         alert("Wrong cred, Please check your email and password");
     }
 }
+
+
+function forgetPassword(){
+
+    var dataFromLS = JSON.parse(localStorage.getItem("userData"));
+    var userEmail = document.getElementById("email").value;
+
+    var flag = false;
+    for (var i = 0; i < dataFromLS.length; i++){
+        if (dataFromLS[i].email === userEmail){
+            flag = true;
+        }
+    }
+    if(flag === true){
+        window.location.href = '/newpass.html';
+        alert("set new password")
+    }
+    else{
+        alert(" email not found ,check email again ")
+    }
+
+
+}
+
+
+function newPassword(){
+
+
+
+}
