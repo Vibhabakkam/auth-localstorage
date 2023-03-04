@@ -89,7 +89,9 @@ function forgetPassword(){
 
 
 function newPassword(){
-
+    var dataFromLS = JSON.parse(localStorage.getItem("userData"));
+    var userEmail = document.getElementById("password").value;
+   alert ("worked")
 
 
 }
