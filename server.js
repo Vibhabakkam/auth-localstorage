@@ -49,12 +49,13 @@ function login(event){
     }
     if(flag === true){
         alert("login succecfully")
-    } else {
         dataFromLS.push(userData);
         localStorage.setItem("userData",JSON.stringify(dataFromLS));
         document.getElementById("email").value =" ";
         document.getElementById("password").value = " ";
         window.location.href = '/home.html';
+    } else {
+       
         alert("Wrong cred, Please check your email and password");
     }
 }
