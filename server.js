@@ -73,7 +73,11 @@ function forgetPassword(){
         }
     }
     if(flag === true){
-        window.location.href = '/newpass.html';
+        // window.location.href = '/newpass.html';
+         
+        var newCode = `<input type = "password" id ="password" > <br> <button onclick="newPassword()">set new password</button>`
+        var divFromHtml = document.getElementById("change")
+        divFromHtml.innerHTML = newCode;
         alert("set new password")
     }
     else{
