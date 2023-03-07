@@ -19,5 +19,14 @@
 
     <a href="forgotpass.html"> forgot password</a>
     <script src="server.js"></script>
+    <script>
+        window.onload = function (){
+            var dataFromLS = JSON.parse(localStorage.getItem("currentUser"));
+            if (dataFromLS){
+                window.location.href ='/Home.html'
+                alert("already log")
+            }
+        }
+    </script>
 </body>
 </html>

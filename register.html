@@ -28,6 +28,15 @@
         <input id="userPassword" type="password" value="Passward"><br>
         <input type="submit" value="Register">
         <script src="server.js"></script>
+        <script>
+            window.onload = function (){
+                var dataFromLS = JSON.parse(localStorage.getItem("currentUser"));
+                if (dataFromLS){
+                    window.location.href ='/Home.html'
+                    alert("already register")
+                }
+            }
+        </script>
     </form>
 </body>
 </html>

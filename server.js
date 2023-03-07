@@ -53,7 +53,12 @@ function login(event) {
         localStorage.setItem("userData", JSON.stringify(dataFromLS));
         document.getElementById("email").value = " ";
         document.getElementById("password").value = " ";
-        window.location.href = '/home.html';
+        var User = {};
+        User = { email: userEmail }
+        localStorage.setItem("currentUser", JSON.stringify(User));
+
+
+        window.location.href = '/Home.html';
     } else {
 
         alert("Wrong cred, Please check your email and password");
@@ -114,16 +119,16 @@ function addToLS() {
     var Imge = document.getElementById("proImg").value;
     var Price = document.getElementById("proPrice").value;
 
-    var userProduct = {  proImg:Imge, proName: Name, proPrice:Price }
+    var userProduct = { proImg: Imge, proName: Name, proPrice: Price }
     // store deta from java script to local storage
     var dataFromLS = JSON.parse(localStorage.getItem("userProduct")) || [];
     console.log(dataFromLS, 'dataFromLS')
-  
+
     dataFromLS.push(userProduct);
     localStorage.setItem("userProduct", JSON.stringify(dataFromLS));
     alert("product added")
 
-    var Name = document.getElementById("proName").value ="" ;
-    var Imge = document.getElementById("proImg").value ="";
-    var Price = document.getElementById("proPrice").value ="";
+    var Name = document.getElementById("proName").value = "";
+    var Imge = document.getElementById("proImg").value = "";
+    var Price = document.getElementById("proPrice").value = "";
 }
