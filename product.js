@@ -19,21 +19,21 @@ function addToCart(pro){
     var dataFromLS = JSON.parse(localStorage.getItem("userData"));
     var currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (currentUser){
-        var allUsers = []
+        var allUsers = [];
         for (var i=0; i <dataFromLS.length ; i++){
-            if(dataFromLS[i].email === currentUser["User"]){
+            if(dataFromLS[i].email === currentUser["currentUserEmail"]){
                 var newObj = dataFromLS[i];
                 newObj["cartProducts"] = newObj["cartProducts"] || [];
                 newObj["cartProducts"].push(JSON.parse(product));
-                allUsers.push(newObj)
+                allUsers.push(newObj);
             } else {
-                allUsers.push(dataFromLS[i])
+                allUsers.push(dataFromLS[i]);
             }
         }
         localStorage.setItem("userData", JSON.stringify(allUsers));
-        alert("product added to cart ")
+        alert("product added to cart ");
     } else{
-        alert(" login first to add product")
+        alert(" login first to add product");
     }
 
 }
