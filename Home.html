@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,6 +27,39 @@
              localStorage.removeItem("currentUser");
              window.location.reload();
              alert("logout done")
+        }
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Home</h1>
+    <div id="logout">
+         
+    </div>
+    <script>
+        function check(){
+            var dataFromLs =JSON.parse(localStorage.getItem("currentUser"));
+            if(dataFromLs){
+                var divForLogout =document.getElementById("logout");
+                var logoutButton =`<button onclick="logout()">Logout</button>`;
+                divForLogout.innerHTML =logoutButton;
+            }
+        }
+        check();
+
+        function logout(){
+            localStorage.removeItem("currentUser");
+            window.location.reload();
+            alert("Logout Successfully done");
         }
     </script>
 </body>
