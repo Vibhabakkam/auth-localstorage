@@ -196,7 +196,7 @@ function login(event){
         var user ={};
         user["current-user-email"]= userEmail;
         localStorage.setItem("currentUser",JSON.stringify(user));
-        window.location.href="/home.html";
+        window.location.href="/Home.html";
         alert("Login sucessful");
     }
     else{
