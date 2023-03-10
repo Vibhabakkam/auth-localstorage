@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -69,4 +69,77 @@
     </script>
 </body>
 
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+  </head>
+  <body>
+    <h1>Cart</h1>
+    <div id="cartProducts"></div>
+    <button onclick="buyProduct()">Buy Product</button>
+    <script>
+      window.onload = function () {
+        var dataFromLs = JSON.parse(localStorage.getItem("currentUser"));
+
+        if (!dataFromLs) {
+          window.location.href = "/login.html";
+          alert("Please Log in first");
+        } else {
+          var dataFromLs = JSON.parse(localStorage.getItem("userData"));
+          var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+          var divFromHtml = document.getElementById("cartProducts");
+
+          var cartProducts;
+          var flag = false;
+          for (var i = 0; i < dataFromLs.length; i++) {
+            if (
+              dataFromLs[i].email === currentUser["current-user-email"] &&
+              dataFromLs[i].cartProducts
+            ) {
+              cartProducts = dataFromLs[i].cartProducts;
+              flag = true;
+            }
+          }
+          if (flag === false) {
+            alert("noproduct added to cart, Go and buy some product");
+          } else {
+            console.log(cartProducts, "cartProducts");
+            var productsWithHTML = [];
+            for (var i = 0; i < cartProducts.length; i++) {
+              productsWithHTML += `<div><img src='${cartProducts[i].image}'><br><h1>${cartProducts[i].name}</h1><p>${cartProducts[i].price}</p></div>`;
+            }
+          }
+          divFromHtml.innerHTML = productsWithHTML;
+        }
+      };
+
+      function buyProduct() {
+        var dataFromLs = JSON.parse(localStorage.getItem("userData"));
+        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        var updatedUser = [];
+        for (var i = 0; i < dataFromLs.length; i++) {
+          if (
+            dataFromLs[i].email === currentUser["current-user-email"] &&
+            dataFromLs[i].cartProducts
+          ) 
+          {
+            dataFromLs[i].cartProducts = [];
+            updatedUser.push(dataFromLs[i]);
+          } 
+          else {
+            updatedUser.push(dataFromLs[i]);
+          }
+        }
+
+        localStorage.setItem("userData",JSON.stringify(updatedUser));
+        window.location.href='/home.html';
+        alert("Product will be dilivered soon");
+      }
+    </script>
+  </body>
 </html>
