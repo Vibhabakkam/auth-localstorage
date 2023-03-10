@@ -255,7 +255,7 @@ function newPassword(){
     
 }
 
-function product(){
+function addToLS(){
 
     var dataFromLs =JSON.parse(localStorage.getItem("product")) || [];
 
