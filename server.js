@@ -268,4 +268,7 @@ function addToLS(){
 
     localStorage.setItem("product",JSON.stringify(dataFromLs));
     alert("Added");
+    var userName = document.getElementById("name").value = "";
+    var userImage= document.getElementById("image").value = "";
+    var price =document.getElementById("price").value = "";
 }
